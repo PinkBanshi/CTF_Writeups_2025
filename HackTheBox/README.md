@@ -1,7 +1,8 @@
 # Hack the Box Labs
 
+Most beginning machines will not have a write up as they are very straightforward and don't require much imagination. Instead I will update general methodology, tools, references, and lessons learned.
 
-Instead of writing full writeups for each machine, but general methodology, tools, references, and lessons learned.
+As the machines get more difficult, the writeups will be found in this folder by name of HTB machine.
 
 ## Machine's Pwned
 

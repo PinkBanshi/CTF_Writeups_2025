@@ -4,21 +4,38 @@ Instead of writing full writeups for each machine, but general methodology, tool
 
 ## Machine's Pwned
 
-| Machine | Date | General Concepts |
-| -- | -- | -- |
-| Meow | 01.19.2025 | telnet |
-| Fawn | 01.19.2025 | ftp |
-| Dancing | 01.19.2025 | smb |
-| Appointment | 01.19.2025 | sql injection |
+| Machine | Date | General Concepts | Difficulty |
+| -- | -- | -- | -- |
+| Meow | 01.18.2025 | telnet | very easy |
+| Fawn | 01.18.2025 | ftp | very easy |
+| Dancing | 01.18.2025 | smb | very easy |
+| Appointment | 01.18.2025 | sql injection | very easy |
+| Redeemer | 01.19.2025 | redis | very easy |
+| Sequel | 01.19.2025 | mysql/ mariaDB | very easy |
+| Crocodile | 01.19.2025 | ftp/gobuster | very easy |
+| -- | -- | -- | -- |
 
 ## Simple Methodology 
 
 Since these are "Very Easy" boxes, there is not much to the methodology
 
-1. `nmap -sV {target_ip}`
-"Probe open ports to determine service/version info" [from man pages](https://linux.die.net/man/1/nmap)
+1. `nmap -sC -sV {target_ip}`
+- -sV : "Probe open ports to determine service/version info" [from man pages](https://linux.die.net/man/1/nmap)
+- -sC : "Performs a script scan using the default set of scripts"  [from man pages](https://linux.die.net/man/1/nmap)
 2. Search online about open ports and found services
 3. Try default or anonymous credentials
+
+## Basic Tool Reference
+
+**NMAP**
+
+
+**GoBuster**
+- web fuzzer
+- [freeCodeCamp tutorial](https://www.freecodecamp.org/news/gobuster-tutorial-find-hidden-directories-sub-domains-and-s3-buckets/)
+
+**SecList**
+- wordlists - like a lot of wordlists
 
 ## Basic Service Reference
 

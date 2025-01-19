@@ -35,7 +35,8 @@ Since these are "Very Easy" boxes, there is not much to the methodology
 ## Basic Tool Reference
 
 **NMAP**
-- TBD
+- network scanning tool
+- [GeeksforGeeks cheatsheet](https://www.geeksforgeeks.org/top-30-basic-nmap-commands-for-beginners/)
 
 **GoBuster**
 - web fuzzer
@@ -45,10 +46,12 @@ Since these are "Very Easy" boxes, there is not much to the methodology
 - wordlists - like a lot of wordlists
 
 **Responder**
-- TBD
+- exploit DNS failures
+- [NotSoSecure's guide](https://notsosecure.com/pwning-with-responder-a-pentesters-guide)
 
 **John the Ripper*
 - hash cracker
+- `john -w=<wordlist.txt> <hashfile>`
 
 **Evil-WinRM**
 - windows remote mangament shell for hacking
@@ -61,5 +64,4 @@ Since these are "Very Easy" boxes, there is not much to the methodology
 | Telnet | 23 | telnet {target-ip} | [telnet hackviser reference](https://hackviser.com/tactics/pentesting/services/telnet) | 
 | FTP | 21  | ftp {target-ip} | [ftp hackviser reference](https://hackviser.com/tactics/pentesting/services/ftp) |
 | SMB | 139, 445 | smbclient //{target-ip} /{share} | [smb hackviser reference](https://hackviser.com/tactics/pentesting/services/smb)
-
 

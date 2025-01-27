@@ -2,9 +2,17 @@
 
 Hosted by the [University of Tulsa CTF club](https://tuctf.com/) on January 24th - January 26th.
 
-This is my first CTF of the year and I competed alone. While it was open for 48hr, I mainly worked Friday envening and a bit on Saturday afternoon. This was a good starting CTF for me, as I was able to complete 7 challenges and ended up in 165th of the 485 people who completed a challenge. 
+This is my first CTF of the year and I competed alone. While it was open for 48hr, I mainly worked Friday evening and a bit on Saturday afternoon. This was a good start to the year for me, as I was able to complete 7 challenges and ended up in 165th of the 485 people who completed a challenge. 
 
 ![CTF_placement](https://github.com/user-attachments/assets/b81852af-0dde-4875-a02b-f2d436f47d61)
+
+- Polyglot files: [Mystery Presentation](#Mystery-Presentation)
+- Pcap file: [Packet Detective](#Packet-Detective) 
+- 802.11 Cap file: [Security Rocks](#Security-Rocks)
+- XOR: [My First Encryption](#My-First-Encryption)
+- EVTX file: [Files in the Web](#Files-in-the-Web)
+- XOR: [XOR-Dinary](#XOR-Dinary)
+- Ghidra RE: [Mystery Box](#Mystery-Box)
 
 ## Forensics
 

@@ -20,26 +20,25 @@ This is my first CTF of the year and I competed alone. While it was open for 48h
 
 ![mysteryPresentation](https://github.com/user-attachments/assets/821415d1-1ce8-4890-a195-e09ea217f785)
 
-
-While given a .pptx file type, clicking on the file to open it opened a folder of many documents. 
-
-Using `file` we could see that it was a zip archive. 
-
-Exploring the zip archive exposed a file named `flag.txt` which contained the flag. 
+The file we are given is a .pptx file type. When I clicked on the file, it opened a folder of many documents, including a 7-zip called `secret_data`. Within this 7-zip, there is a text file called `flag.txt`. This contained the flag in plain text. 
 
 <details>
 <summary>Flag</summary>
 <br>
-`TUCTF{p01yg10+_fi1e5_hiddin9_in_p1@in_5i9h+}`
+`TUCTF{p01yg10+_fi1e5_hiddin9_in_p1@in_5i9h+} `
 </details>
+
+Polyglots are super interesting as they can be interpreted as multiple different types of files. When we used `file quantum_propulsion_via_dank_memes.pptx`, it returned `zip archive`, but we could still view it as a presentation. It is infact both; it depends on the software used to read the file. 
+
+This is great from a steganography and hacker stand point, because you can hide information or executable code. While this hid our flag, you can also use polyglots for remote code execution (RCE). 
 
 ### Packet Detective
 
 ![packetDetective](https://github.com/user-attachments/assets/38ed532d-41bb-4f35-9782-ad83724923a1)
 
-Given a pcap file, I analyzed it in Wireshark. 
+The file we are given is a pcap file, so I analyzed it in Wireshark. 
 
-There were only 100 packets captures, so I started by simply scrolling through and looking at the data of each packet to see if any strings popped out. This exposed the flag in plaintext on the 100th packet. 
+There were only 100 packets captures, so I started by simply scrolling through and skimming for anything interested particularly in the data section of each packet. This exposed the flag in plaintext on the 100th packet. 
 
 <details>
 <summary>Flag</summary>
@@ -51,9 +50,35 @@ There were only 100 packets captures, so I started by simply scrolling through a
 
 ![securityRocks](https://github.com/user-attachments/assets/5f1181cc-a223-4604-942f-228b1863f892)
 
-Big thanks to a 2021 writeup on a pcap file with protocol 802.11 by [Phasetw0](https://phasetw0.com/writeups/uiuctf2021_ceo/). 
+The file provided is a cap file, so I also analyzed this in Wireshark. The protocol was 802.11 which I had never worked with before, so I did some googling. 
 
-[Wireshark docs](https://wiki.wireshark.org/HowToDecrypt802.11)
+First, I found a blog on [Analyzing Wireless Packet Captures](https://documentation.meraki.com/MR/Wireless_Troubleshooting/Analyzing_Wireless_Packet_Captures) from Cisco Meraki which explained what I was seeing and different possible display filters.
+ 
+Next, I found a Wireshark document on [How to Decrypt 802.11](https://wiki.wireshark.org/HowToDecrypt802.11), so I figured I would need to find a password. 
+
+I usually look for a CTF writeup on the same idea for some understanding, and found a 2021 writeup for a pcap file with protocol 802.11 by [Phasetw0](https://phasetw0.com/writeups/uiuctf2021_ceo/). This really helped point me in the right direction. 
+
+So with the following plan of attack, I was ready:
+1. Use the wi-fi authentication handshake to get a WPA key
+2. Use `hashcat` to crack the password
+3. Decrypt the traffic
+4. Find interesting TCP, HTTP, etc. traffic and analyze as usual
+5. Profit
+
+1. WPA2 uses a 4-way handshake to authenticate. The protocol, Extensible Authentication Procol over LAN (`EAPOL`), can be filtered for with `eapol`. 
+
+Here, we see that the capture does have EAPOL packets and thus we can try to crack the password. In order to get to something hashcat can work with I used `cap2hccapx` (as suggested by *Phasetw0*) to translate the cap file to a hccapx which is a hashcat specific file format. 
+
+Since I'm running Kali, is was able to find it in `/usr/lib/hashcat-utils/cap2hccapx.bin`
+
+Give it a 
+```
+/usr/lib/hashcat-utils/cap2hccapx.bin dump-05.cap hccapx-out
+```
+
+
+
+2. Hashcat has a cool feature
 
 Decode `1KZTi2ZV7tO6yNxslvQbjRGL54BsPVyskwv4QaR29UMKj` on [Dcode]() as --- to get our flag. 
 

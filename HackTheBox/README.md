@@ -13,9 +13,10 @@ As the machines get more difficult, the writeups will be found in this folder by
 | Dancing | 01.18.2025 | smb | very easy |
 | Appointment | 01.18.2025 | sql injection | very easy |
 | Redeemer | 01.19.2025 | redis | very easy |
-| Sequel | 01.19.2025 | mysql/ mariaDB | very easy |
-| Crocodile | 01.19.2025 | ftp/gobuster | very easy |
-| Responder | 01.19.2025 | php/RCE/responder/winrm | very easy |
+| Sequel | 01.19.2025 | mysql, mariaDB | very easy |
+| Crocodile | 01.19.2025 | ftp, gobuster | very easy |
+| Responder | 01.19.2025 | php, RCE, responder, winrm | very easy |
+| Cap | 01.24.2025 | IDOR, linpeas | retired easy | 
 | -- | -- | -- | -- |
 
 ## Simple Methodology 
@@ -56,6 +57,10 @@ Since these are "Very Easy" boxes, there is not much to the methodology
 **Evil-WinRM**
 - windows remote mangament shell for hacking
 - [Evil-winrm github](https://github.com/Hackplayers/evil-winrm)
+
+**LinPEAS**
+- identify privilege escalation opportunities for Linux 
+- 
 
 ## Basic Service Reference
 

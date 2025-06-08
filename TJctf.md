@@ -5,6 +5,7 @@ June 6th - June 8th.
 Hosted by the [Thomas Jefferson High School for Science and Technology](https://ctf.tjctf.org/), I originally was not going to compete in this CTF because I was camping without reception for most of it, but thought this was going to be a nice easy CTF and wanted to check it out. Those highschoolers did a really good job creating interesting problems. So I wish I had of been able to participate the entirety of it.
 
 I competed alone and got 461st of 723 teams who scored at least a point.
+
 ![CTF_placement](https://github.com/user-attachments/assets/8e54a683-ce4a-4809-a9d1-38a41b185248)
 
 - Binary search: [Guess my Number](#Guess-My-Number)

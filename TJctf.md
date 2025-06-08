@@ -82,7 +82,30 @@ After saving it to a file and opening it with ImageMagick (since I'm on Kali Lin
 ## Serpent
 ![Serpent](https://github.com/user-attachments/assets/7dda53bc-b300-4e3d-8221-d1ad0a41a8ac)
 
-We are given a `.pickle` file for this challenge
+We are given a `.pickle` file for this challenge. Before even looking up what a pickle file was, it ran `file` on the file to see that it was just `data`. 
+![FileCMDResults](https://github.com/user-attachments/assets/591e70a0-de1f-45d8-bfb6-2c84e1a764be)
+
+I decided to open it in vim just to see if it was readable, and several flags immediately jumped out to me, so I ran `strings` and foun a plethora of possible flags as well as several words like "distractions" or "fake flags." 
+![stringsCMDResults](https://github.com/user-attachments/assets/0d00d883-35b1-4284-b9fb-ebfdbdf41444)
+
+At this point I decided to look up `.pickle` file to find that it is a Python-specific file format for serialization. I figured `ast_dump` could have meaning as well, so I found that it stood for abstract syntax tree, and `ast` was a python library for working with it. 
+
+An abstract syntax tree (AST) is a data structure that represents the structure of code. These are widely used in compilers or program analysis. By the hint to go to the deepest level, I knew we wanted to see an outupt in its tree format and find the deepest leaf node. Instead I found a way to print the data with indents and followed that as deep as I could. 
+
+```python
+import pickle
+import ast
+
+with open("ast_dump.pickle", "rb") as f: # open the file
+    loaded_data = pickle.load(f) # deserial the data
+
+print(ast.dump(ast.parse(loaded_data), indent=4)) # print the data as an ast_dump parsed to nicely have indents
+```
+
+I found a Function called "deepest layer" and it only had one associated flag. Trying this flag solved the challenge. 
+![AstDump](https://github.com/user-attachments/assets/d8962caf-ff67-4c11-a8e5-86b61d749d30)
+
+**tjctf{f0ggy_d4ys}**
 
 ## Garfield Monday Lasagna
 ![GarfieldMondayLasagna](https://github.com/user-attachments/assets/a5f2cb76-9285-40a9-9b3b-defa1441588d)

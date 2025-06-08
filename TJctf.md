@@ -83,9 +83,11 @@ After saving it to a file and opening it with ImageMagick (since I'm on Kali Lin
 ![Serpent](https://github.com/user-attachments/assets/7dda53bc-b300-4e3d-8221-d1ad0a41a8ac)
 
 We are given a `.pickle` file for this challenge. Before even looking up what a pickle file was, it ran `file` on the file to see that it was just `data`. 
+
 ![FileCMDResults](https://github.com/user-attachments/assets/591e70a0-de1f-45d8-bfb6-2c84e1a764be)
 
 I decided to open it in vim just to see if it was readable, and several flags immediately jumped out to me, so I ran `strings` and foun a plethora of possible flags as well as several words like "distractions" or "fake flags." 
+
 ![stringsCMDResults](https://github.com/user-attachments/assets/0d00d883-35b1-4284-b9fb-ebfdbdf41444)
 
 At this point I decided to look up `.pickle` file to find that it is a Python-specific file format for serialization. I figured `ast_dump` could have meaning as well, so I found that it stood for abstract syntax tree, and `ast` was a python library for working with it. 
@@ -102,10 +104,44 @@ with open("ast_dump.pickle", "rb") as f: # open the file
 print(ast.dump(ast.parse(loaded_data), indent=4)) # print the data as an ast_dump parsed to nicely have indents
 ```
 
-I found a Function called "deepest layer" and it only had one associated flag. Trying this flag solved the challenge. 
+Running this code, I found a Function called "deepest layer" and it only had one associated flag. 
+
 ![AstDump](https://github.com/user-attachments/assets/d8962caf-ff67-4c11-a8e5-86b61d749d30)
+
+Trying this flag, I solved the challenge.
 
 **tjctf{f0ggy_d4ys}**
 
 ## Garfield Monday Lasagna
 ![GarfieldMondayLasagna](https://github.com/user-attachments/assets/a5f2cb76-9285-40a9-9b3b-defa1441588d)
+
+Going to the site, we are greeted by a madlib entry form. I like to start by inspecting the site, but found nothing of interest. 
+
+![GarfieldSite](https://github.com/user-attachments/assets/0adc5697-e028-483f-bf70-7492e524ef26)
+
+The next step was to submit a query and see what got returned. Here, we found something interesting in the network tab of the inspection. In addition to the mad lib getting returned with our inputs, we also can see a `.wasm` file. 
+
+![MadLibInspection](https://github.com/user-attachments/assets/59d47f05-167f-4f81-8928-afb38a36b21d)
+
+I downloaded this file and did a bit of research on WASM, or WebAssembly. It can be compiled from any number of languages including C, C++, Rust, and Go to run in web browsers. It's highly portable, compact, and most importantly for me has an intermediate **Text format**. 
+
+There is a command line tool to decode `.wasm` to `.wat` (the text format) using `wasm2wat`.
+
+![Wasm2WatCMD](https://github.com/user-attachments/assets/bde24a65-6a6e-4d04-af2e-a57703afc9c4)
+
+From here, I could now open the file in vim to something human-readable. I don't know this language, but I can make some inferences. First, we care about function 2, as the line `(expot "get_flag" (func 2))` seems to indicate.
+
+![SnippetofWATcode](https://github.com/user-attachments/assets/67d74c9a-9035-4130-aa4c-bf343390efbf)
+
+Function 2 seems to store 3 decimal numbers in what I assume to be memory addresses. 
+
+![SnippetofWATFunc2](https://github.com/user-attachments/assets/98532ae2-3d3c-44c7-81d4-e55951b1fd17)
+
+Decoding these using [Rapid Tables](https://www.rapidtables.com/convert/number/decimal-to-hex.html) we can see that the output is the flag backwards. 
+
+![decimalToHex](https://github.com/user-attachments/assets/33bdfe20-7168-412f-9997-fa61ddd6edbd)
+![hexToASCII](https://github.com/user-attachments/assets/3ceb25d5-4f83-4006-8162-312122cfd79d)
+
+Putting together the three decimal numbers converted to ASCII, we get the following flag. 
+
+**tjctf{w3b_m4d_libs_w4sm}}**

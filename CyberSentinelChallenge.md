@@ -2,7 +2,8 @@
 
 **June 14th, 2025** - 11am to 7pm EST
 
-![ranking](https://github.com/user-attachments/assets/9f695905-5bb5-4569-8a83-128789af9602)
+![ranking](https://github.com/user-attachments/assets/bc4402a9-71d7-4fb1-ba83-92b274cd265e)
+
 
 - Robots.txt: [Secret.txt Society](#Secret.txt-Society)
 - IDOR issue: [Field Reports Mayhem](#Field-Reports-Mayhem)

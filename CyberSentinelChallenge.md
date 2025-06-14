@@ -2,6 +2,8 @@
 
 **June 14th, 2025** - 11am to 7pm EST
 
+I had fun with this short CTF, and ranked 363rd of 2,153 people on the scoreboard. 
+
 ![ranking](https://github.com/user-attachments/assets/bc4402a9-71d7-4fb1-ba83-92b274cd265e)
 
 
